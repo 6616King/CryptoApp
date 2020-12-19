@@ -42,7 +42,7 @@ function MyStack() {
       component={Home} 
       options={
         { title: 'Home' },
-        {headerLeft: null} 
+        {headerLeft: null}
       }
       />
     </Stack.Navigator>

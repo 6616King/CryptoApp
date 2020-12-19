@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator, Image } from 'react-native';
+import { color } from 'react-native-reanimated';
 import firebase from '../database/firebase';
 
 
@@ -22,7 +23,7 @@ export default class Login extends Component {
 
     userLogin = () => {
         if(this.state.email === '' || this.state.password === '') {
-            Alert.alert('Enter details to signin!')
+            Alert.alert('Enter details to login!')
         } else {
         this.setState({
             isLoading: true,
@@ -54,6 +55,12 @@ export default class Login extends Component {
         }    
         return (
         <View style={styles.container}>  
+            <View style={styles.logoContainer}>  
+                <Image 
+                style={styles.imgLogo}
+                source={require('./image/logo.png')} />
+            </View>
+            <View style={styles.contentContainer}> 
             <Text style={styles.baseText}>
                 Email:
             </Text>
@@ -83,7 +90,13 @@ export default class Login extends Component {
                 color="#00bb57"
                 title="Signup"
                 onPress={() => this.props.navigation.navigate('Signup')}
-            />           
+            />
+            </View>
+            <View style={styles.footerContainer}>   
+                <Text style={styles.footerText}>
+                    Created by King Ann Khoo
+                </Text>
+            </View>           
         </View>
         );
     }
@@ -95,12 +108,30 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        padding: 35,
         backgroundColor: '#fff'
+    },
+    logoContainer: {
+        padding: 35,
+        paddingBottom: 0,
+        backgroundColor: '#fff',
+        alignItems: 'center'
+    },
+    contentContainer: {
+        padding: 35,
+        paddingBottom: 80,
+        backgroundColor: '#fff'
+    },
+    footerContainer:{
+        padding: 10,
+        backgroundColor: '#29abe2'
+    },
+    imgLogo: {
+        width: 150,
+        height: 80,
     },
     baseText:{
         fontSize: 20
-        },
+    },
     inputStyle: {
         width: '100%',
         marginBottom: 40,
@@ -111,10 +142,9 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         fontSize: 18
     },
-    loginText: {
-        color: '#3740FE',
-        marginTop: 25,
-        textAlign: 'center'
+    footerText:{
+        textAlign: 'center', 
+        color: '#fff' 
     },
     space:{
         height: 30
